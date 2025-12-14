@@ -161,8 +161,9 @@ def quantize_onnx_static(onnx_input_path, onnx_output_path, calibration_data_fil
         model_input=onnx_input_path,
         model_output=onnx_output_path,
         calibration_data_reader=data_reader,
-        weight_type=QuantType.QUInt8,
-        activation_type=QuantType.QUInt8,
+        # use symmetric quantization
+        weight_type=QuantType.QInt8,
+        activation_type=QuantType.QInt8,
     )
 
 

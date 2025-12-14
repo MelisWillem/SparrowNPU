@@ -11,6 +11,7 @@ Goals
 
 ## Model & quantization
 - Tiny transformer (2 layers, d_model=64, heads=2, MLP=128, vocab=256).
+- Use symmetric quantization to avoid zeropoint logic.
 - optoinal: improve the behavior of the transformer by training it on a small corpus.
 
 ## Hardware & Compiler co-design
