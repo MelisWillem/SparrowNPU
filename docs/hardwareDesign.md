@@ -20,9 +20,13 @@ Success: testbech is ok
 
 Phase 2 — 2×2 Systolic Array Goal: validate systolic dataflow
 - Wire 4 PEs in 2×2 grid
-- A matrix flows down (column-wise)
-- B matrix flows right (row-wise)
+- A matrix flows right (row-wise)
+- B matrix flows down (column-wise)
 - Each PE accumulates over K cycles
+
+     B0  B1
+A0  PE00 PE01
+A1  PE10 PE11
 
 Validation:
 - Test matrix multiply (e.g., 2×K × K×2)
