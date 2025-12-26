@@ -1,9 +1,0 @@
-0.7
-2020.2
-Nov 14 2025
-12:36:23
-/home/zilleplus/code/ML/SparrowNPU/hardware/multiplier/multiplier.sim/sim_1/behav/xsim/glbl.v,1756381829,verilog,,,,glbl,,,,,,,,
-/home/zilleplus/code/ML/SparrowNPU/hardware/multiplier/multiplier.srcs/sources_1/new/mul.v,1765746527,verilog,,/home/zilleplus/code/ML/SparrowNPU/hardware/multiplier/multiplier.srcs/sources_1/new/tb_mul.v,,mul,,,../../../../../../../../../AMDXilinx/2025.2/data/rsb/busdef,,,,,
-/home/zilleplus/code/ML/SparrowNPU/hardware/multiplier/multiplier.srcs/sources_1/new/mul_acc.v,1765829923,verilog,,/home/zilleplus/code/ML/SparrowNPU/hardware/multiplier/multiplier.srcs/sources_1/new/tb_mul_acc.v,,mulc_acc,,,../../../../../../../../../AMDXilinx/2025.2/data/rsb/busdef,,,,,
-/home/zilleplus/code/ML/SparrowNPU/hardware/multiplier/multiplier.srcs/sources_1/new/tb_mul.v,1765828608,verilog,,,,tb_mul1d,,,../../../../../../../../../AMDXilinx/2025.2/data/rsb/busdef,,,,,
-/home/zilleplus/code/ML/SparrowNPU/hardware/multiplier/multiplier.srcs/sources_1/new/tb_mul_acc.v,1765830887,verilog,,,,tb_mul_acc,,,../../../../../../../../../AMDXilinx/2025.2/data/rsb/busdef,,,,,

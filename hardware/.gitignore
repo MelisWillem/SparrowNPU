@@ -1,0 +1,35 @@
+# Xilinx Vivado
+# Simulation artifacts
+*.sim/
+*.cache/
+*.hw/
+*.ip_user_files/
+# Vivado project files (keep .xpr but ignore generated files)
+*.jou
+*.log
+*.wdb
+*.pb
+*.str
+*.xdbg
+*.mem
+*.rlx
+*.rtti
+*.svtype
+*.type
+*.version
+*.reloc
+*.dbg
+*.crash
+*.k
+*.kernel.log
+*.ini
+*.sdb
+*.wdf
+*.wpc
+# Compiled objects
+*.o
+*.c
+# Temporary files
+TempBreakPointFile.txt
+Compile_Options.txt
+
