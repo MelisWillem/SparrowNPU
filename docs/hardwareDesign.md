@@ -33,7 +33,9 @@ Validation:
 - Verify pipelined accumulation
 - Check data propagation timing
 
-Defer: DMA, BRAM, AXI interfaces
+Defer: BRAM
+
+AXI-Stream variant: `systolic_2x2_axis.v` — 2×2 systolic with AXI-Stream for DMA (see `hardware/multiplier/docs/AXI_STREAM_SYSTOLIC.md`).
 
 Success: correct output → core works.
 
@@ -47,3 +49,5 @@ Specify:
 - Input format (packed/unpacked, endianness)
 - Output format (accumulator width, scaling)
 - Control signals (start, done, stall)
+
+see: kernels.md
