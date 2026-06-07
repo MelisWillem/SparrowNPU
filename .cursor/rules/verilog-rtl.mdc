@@ -1,0 +1,13 @@
+---
+description: SparrowNPU RTL uses IEEE 1364 Verilog only (not SystemVerilog).
+globs: hardware/**/*.v
+alwaysApply: false
+---
+
+# Verilog-only HDL
+
+All `*.v` RTL and testbenches under `hardware/` are **Verilog** (IEEE 1364), not SystemVerilog (IEEE 1800).
+
+Do not introduce SystemVerilog-only constructs, including but not limited to: `logic`; typed parameters such as `parameter int` / `parameter int unsigned`; `unsigned` / `byte` / `shortint` on declarations where Verilog would use plain `wire`/`reg` and implicit unsigned packing; `always_ff` / `always_comb`; `interface` / `modport` / `typedef struct` / `enum` in RTL; `unique`/`priority case`; packages with `import` in RTL; streaming operators; wildcard port `.*`.
+
+Prefer `wire`/`reg`, `always @(posedge clk)` or `always @(*)`, untyped `parameter` and `localparam`, explicit port connections, and `.v` file names. Use `$clog2` only when the synthesis/simulator flow is known to accept it (e.g. Vivado Verilog mode).
