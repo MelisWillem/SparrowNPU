@@ -76,7 +76,7 @@ module tb_systolic_2x2_axis;
         @(posedge clk);
         while (!(S_AXIS_A_TREADY && S_AXIS_B_TREADY)) @(posedge clk);
         S_AXIS_A_TDATA  = 32'h00000302;  // A_in_0=2, A_in_1=3
-        S_AXIS_B_TDATA  = 32'h00000807;  // B_in_0=7, B_in_1=6
+        S_AXIS_B_TDATA  = 32'h00000607;  // B_in_0=7, B_in_1=6  (was 0x0807 = wrong hi byte)
         S_AXIS_A_TLAST  = 0;
         S_AXIS_B_TLAST  = 0;
 

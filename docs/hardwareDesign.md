@@ -33,21 +33,26 @@ Validation:
 - Verify pipelined accumulation
 - Check data propagation timing
 
-Defer: BRAM
-
-AXI-Stream variant: `systolic_2x2_axis.v` — 2×2 systolic with AXI-Stream for DMA (see `hardware/multiplier/docs/AXI_STREAM_SYSTOLIC.md`).
-
 Success: correct output → core works.
 
-Phase 3 — Tile Interface Contract
+Phase 3 — DMA, feeder, and tile contract
 
-Goal: define hardware-software interface
+Goal: end-to-end path from PS memory to the systolic tile and back.
 
-Specify:
-- Tile dimensions (e.g., 4×4, 8×8)
-- Cycles per tile computation
-- Input format (packed/unpacked, endianness)
-- Output format (accumulator width, scaling)
-- Control signals (start, done, stall)
+Architecture (see `hardware/multiplier/docs/AXI_STREAM_SYSTOLIC.md`):
+
+1. **DMA** — AXI DMA moves A, B, and C between DRAM and PL streams (bursts, TLAST).
+2. **systolic_feeder** — Internal memory caches a tile’s **pre-packed** inputs; load FSM fills cache from streams; feed FSM replays **one beat per cycle** into the array (decouples burst DMA from systolic timing). Software supplies wavefront order in DRAM.
+3. **systolic array** (`systolic_2x2`) — Fixed datapath; no DMA awareness.
+
+RTL: `systolic_feeder.v` (BRAM + load/feed/drain + `systolic_2x2`); `systolic_2x2_axis.v` is the thin AXI wrapper around the feeder.
+
+Specify for the overlay:
+
+- Tile dimensions (e.g., 2×K × K×2)
+- Cache depth / double-buffering
+- Input format in DRAM (**v1:** pre-packed wavefront beats per `AXI_STREAM_SYSTOLIC.md`)
+- Output format (accumulator width, packing)
+- Control: start tile, done, errors
 
 see: kernels.md

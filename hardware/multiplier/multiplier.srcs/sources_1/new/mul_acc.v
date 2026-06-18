@@ -24,16 +24,16 @@ module mulc_acc (
     input wire clk,
     input wire reset,
     input wire enable_mac,
-    input wire unsigned [7:0] A, // 8-bit unsigned operand
-    input wire unsigned [7:0] B, // 8-bit unsigned operand
+    input wire [7:0] A, // 8-bit operand (unsigned interpretation)
+    input wire [7:0] B, // 8-bit operand (unsigned interpretation)
     output wire [15:0] P_out // 16-bit accumulated product
 );
 
 // The operands are treated as unsigned
-reg unsigned [7:0] op_A_reg;
-reg unsigned [7:0] op_B_reg;
-reg unsigned [15:0] product_reg;
-reg unsigned [15:0] accumulator_reg;
+reg [7:0] op_A_reg;
+reg [7:0] op_B_reg;
+reg [15:0] product_reg;
+reg [15:0] accumulator_reg;
 
 // 1. Input Register Stage (Optional, for better clocking/pipelining)
 always @(posedge clk) begin
