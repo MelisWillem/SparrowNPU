@@ -17,9 +17,9 @@ def matmul(A: np.ndarray, B: np.ndarray):
 
 def pack_wavefront_2x2_u8(A: np.ndarray, B: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
-    Build DMA buffers for a 2×2 × 2×2 tile (unsigned 8-bit), wavefront order.
+    Build DMA buffers for a 2x2 x 2x2 tile (unsigned 8-bit), wavefront order.
 
-    Each stream is 3 × uint32 beats; TLAST on the last beat (software / DMA length).
+    Each stream is 3 x uint32 beats; TLAST on the last beat (software / DMA length).
 
     A, B: shape (2, 2), dtype uint8 (or castable).
     Returns:
@@ -42,6 +42,16 @@ def pack_wavefront_2x2_u8(A: np.ndarray, B: np.ndarray) -> tuple[np.ndarray, np.
         pack16(0, B[1, 1]),
     ]
     return np.array(a0, dtype=np.uint32), np.array(b0, dtype=np.uint32)
+
+
+def print_beats(label: str, beats: np.ndarray) -> None:
+    """Print uint32 wavefront beats as hex with unpacked (lo, hi) byte pairs."""
+    parts = []
+    for v in beats:
+        w = int(np.uint32(v))
+        lo, hi = w & 0xFF, (w >> 8) & 0xFF
+        parts.append(f"0x{w:04x} ({lo}, {hi})")
+    print(f"{label}: [{', '.join(parts)}]")
 
 
 def unpack_axis_c_u64(word: int | np.uint64) -> np.ndarray:
@@ -113,6 +123,8 @@ if __name__ == "__main__":
     A = np.array([[1, 2], [3, 4]], dtype=np.uint8)
     B = np.array([[5, 6], [7, 8]], dtype=np.uint8)
     a_beats, b_beats = pack_wavefront_2x2_u8(A, B)
+    print_beats("a_beats", a_beats)
+    print_beats("b_beats", b_beats)
     assert np.array_equal(a_beats, np.array([0x0001, 0x0302, 0x0400], dtype=np.uint32))
     assert np.array_equal(b_beats, np.array([0x0005, 0x0607, 0x0800], dtype=np.uint32))
     C = golden_matmul_2x2_u8(A, B)
