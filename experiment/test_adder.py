@@ -1,11 +1,11 @@
 import cocotb
-from cocotb.triggers import FallingEdge, RisingEdge, Timer
+from cocotb.triggers import FallingEdge
 from cocotb.clock import Clock
 
 
 @cocotb.test()
 async def test_adder_all_values(dut):
-    cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+    cocotb.start_soon(Clock(dut.clk, 10, unit="ns").start())
     WIDTH = 8
 
     for i in range(2**WIDTH):
